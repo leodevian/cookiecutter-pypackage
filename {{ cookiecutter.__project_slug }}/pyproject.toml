@@ -95,8 +95,14 @@ ignore = ["COM812", "ISC001"]
 convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
-"scripts/**" = ["INP001"]
-"tests/**" = ["ARG", "D", "S101"]
+"scripts/**" = [
+    "INP001",
+]
+"tests/**" = [
+    "ARG",
+    "D",
+    "S101",
+]
 
 [tool.pytest.ini_options]
 minversion = "6.0"

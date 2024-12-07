@@ -54,3 +54,11 @@ dependency_groups = ["release"]
 commands = [
     ["towncrier", "build", "--draft"],
 ]
+
+[env.docstrings]
+description = "Check for missing docstrings."
+skip_install = true
+dependency_groups = ["docstrings"]
+commands = [
+    ["interrogate", "-v"],
+]

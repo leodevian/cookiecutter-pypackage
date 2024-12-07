@@ -194,6 +194,7 @@ ignore-module = false
 ignore-nested-functions = false
 ignore-nested-classes = false
 ignore-setters = false
+exclude = ["tests"]
 fail-under = 100
 verbose = 0
 quiet = false

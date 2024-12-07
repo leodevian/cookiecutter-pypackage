@@ -1,0 +1,56 @@
+requires = [
+    "tox>=4.23.2",
+]
+env_list = [
+    "lint",
+    "mypy",
+    "3.12",
+]
+
+[env_run_base]
+description = "Run tests under `{base_python}`."
+skip_install = true
+dependency_groups = [
+    "tests",
+]
+commands = [
+    ["pytest", { replace = "posargs", extend = true }],
+]
+
+[env.lint]
+description = "Run all linters."
+dependency_groups = ["lint"]
+commands = [
+    ["pre-commit", "run", "--all-files", { replace = "posargs", extend = true }],
+]
+
+[env.mypy]
+description = "Type check Python code."
+base_python = ["3.12"]
+dependency_groups = ["type"]
+commands = [
+    ["mypy", "hooks"],
+]
+
+[env.docs]
+description = "Build the documentation."
+base_python = ["3.12"]
+dependency_groups = ["docs"]
+commands = [
+    ["mkdocs", "build", "--clean", "--strict", { replace = "posargs", extend = true }],
+]
+
+[env.autodocs]
+description = "Serve the documentation locally."
+base_python = ["3.12"]
+dependency_groups = ["docs"]
+commands = [
+    ["mkdocs", "serve", "--strict", "--open", { replace = "posargs", extend = true }],
+]
+
+[env.changelog]
+description = "Render news fragments to the standard output."
+dependency_groups = ["release"]
+commands = [
+    ["towncrier", "build", "--draft"],
+]

@@ -5,7 +5,6 @@
 - [ ] Complete `CONTRIBUTING.md`
 - [ ] Add tests
 - [ ] Write documentation
-- [ ] Add tox
 - [ ] Add tox environment or automation script for releases
 - [ ] Complete template
   - [ ] Complete `CONTRIBUTING.md`

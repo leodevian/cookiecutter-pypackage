@@ -1,6 +1,7 @@
 """Post-generation hook."""
 
 import subprocess
+from pathlib import Path
 
 TERMINATOR = "\x1b[0m"
 ERROR = "\x1b[1;91m [ERROR]: "
@@ -11,6 +12,9 @@ HINT = "\x1b[3;33m"
 
 def create_git_repository() -> None:
     """Create an empty Git repository."""
+    if (Path.cwd() / ".git").exists():
+        return
+
     subprocess.run(["git", "init"], check=True)
 
 

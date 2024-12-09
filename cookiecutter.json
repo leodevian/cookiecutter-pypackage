@@ -1,0 +1,56 @@
+{
+  "project_name": "My Python Package",
+  "__project_slug": "{{ cookiecutter.project_name|slugify }}",
+  "__package_name": "{{ cookiecutter.project_name|slugify(separator='_') }}",
+  "version": "0.1.0",
+  "short_description": "",
+  "python_version": [
+    "3.13",
+    "3.12",
+    "3.11",
+    "3.10",
+    "3.9"
+  ],
+  "license": [
+    "MIT",
+    "BSD-3-Clause",
+    "GPL-3.0-only",
+    "Apache-2.0",
+    "LicenseRef-Proprietary"
+  ],
+  "author_name": "Léo Bernard",
+  "author_email": "leodevian.gh@gmail.com",
+  "github_owner": "leodevian",
+  "__github_slug": "{{ cookiecutter.github_owner }}/{{ cookiecutter.__project_slug }}",
+  "__github_repository": "https://github.com/{{ cookiecutter.__github_slug }}",
+  "git_init": true,
+  "uv_sync": false,
+  "pre_commit_install": false,
+  "__prompts__": {
+    "project_name": "Project name",
+    "version": "Version",
+    "short_description": "Short description",
+    "python_version": {
+    "__prompt__": "Python version",
+      "3.13": "Python 3.13",
+      "3.12": "Python 3.12",
+      "3.11": "Python 3.11",
+      "3.10": "Python 3.10",
+      "3.9": "Python 3.9"
+    },
+    "license": {
+      "__prompt__": "License",
+      "MIT": "MIT",
+      "BSD-3-Clause": "BDS-3-Clause",
+      "GPL-3.0-only": "GNU General Public License v3.0 only",
+      "Apache-2.0": "Apache License 2.0",
+      "LicenseRef-Proprietary": "Proprietary"
+    },
+    "author_name": "Full name",
+    "author_email": "Email",
+    "github_owner": "GitHub owner",
+    "git_init": "Create an empty Git repository",
+    "uv_sync": "Create a development environment",
+    "pre_commit_install": "Install pre-commit hooks"
+  }
+}

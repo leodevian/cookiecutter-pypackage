@@ -1,0 +1,120 @@
+requires = [
+    "tox>=4.23.2",
+]
+env_list = [
+    "lint",
+    "type",
+    "{{ cookiecutter.python_version }}",
+    "coverage",
+    "pkg",
+]
+
+[env_run_base]
+description = "Run tests under {env_name}."
+package = "wheel"
+wheel_build_env = ".pkg"
+dependency_groups = ["tests"]
+commands = [
+    ["coverage", "run", "-m", "pytest", { replace = "posargs", extend = true }],
+]
+
+[env.coverage]
+description = "Report coverage analysis."
+depends = ["{{ cookiecutter.python_version }}"]
+skip_install = true
+dependency_groups = ["coverage"]
+commands = [
+    ["coverage", "combine"],
+    ["coverage", "report"],
+    ["coverage", "html"],
+]
+
+[env.lint]
+description = "Run all linters."
+skip_install = true
+dependency_groups = ["lint"]
+commands = [
+    [
+        "pre-commit",
+        "run",
+        "--all-files",
+        "--show-diff-on-failure",
+        { replace = "posargs", extend = true },
+    ],
+]
+
+[env.type]
+description = "Type check Python packages."
+base_python = ["{{ cookiecutter.python_version }}"]
+dependency_groups = ["type"]
+commands = [
+    ["mypy", "src"],
+]
+
+[env.pkg]
+description = "Check source distributions and wheels."
+skip_install = true
+dependency_groups = ["pkg"]
+commands = [
+    [
+        "uv",
+        "build",
+        "--out-dir",
+        "{env_tmp_dir}",
+    ],
+    [
+        "check-wheel-contents",
+        "--no-config",
+        "{env_tmp_dir}",
+    ],
+    [
+        "twine",
+        "check",
+        "{env_tmp_dir}{/}*",
+    ],
+]
+
+[env.docs]
+description = "Build the documentation."
+base_python = ["{{ cookiecutter.python_version }}"]
+dependency_groups = ["docs"]
+commands = [
+    [
+        "mkdocs",
+        "build",
+        "--clean",
+        "--strict",
+        { replace = "posargs", extend = true },
+    ],
+]
+
+[env.autodocs]
+description = "Serve the documentation locally."
+package = "editable"
+base_python = ["{{ cookiecutter.python_version }}"]
+dependency_groups = ["docs"]
+commands = [
+    [
+        "mkdocs",
+        "serve",
+        "--strict",
+        "--open",
+        { replace = "posargs", extend = true },
+    ],
+]
+
+[env.changelog]
+description = "Render news fragments to the standard output."
+skip_install = true
+dependency_groups = ["release"]
+commands = [
+    ["towncrier", "build", "--draft"],
+]
+
+[env.docstrings]
+description = "Check for missing docstrings."
+skip_install = true
+dependency_groups = ["docstrings"]
+commands = [
+    ["interrogate", "--verbose"],
+]

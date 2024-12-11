@@ -1,0 +1,77 @@
+requires = [
+    "tox>=4.23.2",
+    "tox-uv>=1.20.2",
+]
+env_list = [
+    "lint",
+    "type",
+    "3.13",
+    "3.12",
+    "3.11",
+    "3.10",
+    "3.9",
+]
+
+[env_run_base]
+description = "Run tests under {env_name}"
+package = "skip"
+dependency_groups = ["tests"]
+commands = [
+    ["pytest", { replace = "posargs", extend = true }],
+]
+
+[env.lint]
+description = "Run all linters"
+dependency_groups = ["lint"]
+commands = [
+    [
+        "pre-commit",
+        "run",
+        "--all-files",
+        "--show-diff-on-failure",
+        { replace = "posargs", extend = true },
+    ],
+]
+
+[env.type]
+description = "Type check Cookiecutter hooks"
+base_python = ["3.13"]
+dependency_groups = ["type"]
+commands = [
+    ["mypy", "hooks"],
+]
+
+[env.docs]
+description = "Generate the documentation"
+base_python = ["3.13"]
+dependency_groups = ["docs"]
+commands = [
+    [
+        "mkdocs",
+        "build",
+        "--clean",
+        "--strict",
+        { replace = "posargs", extend = true },
+    ],
+]
+
+[env.autodocs]
+description = "Serve the documentation locally"
+base_python = ["3.13"]
+dependency_groups = ["docs"]
+commands = [
+    [
+        "mkdocs",
+        "serve",
+        "--strict",
+        "--open",
+        { replace = "posargs", extend = true },
+    ],
+]
+
+[env.changelog]
+description = "Render news fragments to standard output"
+dependency_groups = ["release"]
+commands = [
+    ["towncrier", "build", "--draft"],
+]

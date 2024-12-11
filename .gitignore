@@ -1,0 +1,38 @@
+# Virtual environments
+venv/
+.venv/
+
+# IDEs
+.idea/
+.vscode/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Cache
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Tests
+.tox/
+.nox/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Documentation
+site/
+
+# Miscellaneous
+*~
+.*~
+*.DS_Store

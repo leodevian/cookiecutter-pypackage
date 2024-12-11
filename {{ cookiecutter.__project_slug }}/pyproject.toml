@@ -1,0 +1,211 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "{{ cookiecutter.__project_slug }}"
+description = "{{ cookiecutter.short_description }}"
+readme = "README.md"
+requires-python = ">={{ cookiecutter.python_version }}"
+license = "{{ cookiecutter.license }}"
+license-files = ["LICENSE"]
+authors = [
+    { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
+]
+maintainers = [
+    { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
+]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: {{ cookiecutter.python_version }}",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Typing :: Typed",
+]
+dependencies = []
+dynamic = ["version"]
+
+[project.urls]
+homepage = "{{ cookiecutter.__github_repository }}"
+repository = "{{ cookiecutter.__github_repository }}"
+changelog = "{{ cookiecutter.__github_pages }}/changelog"
+documentation = "{{ cookiecutter.__github_pages }}"
+issues = "{{ cookiecutter.__github_repository }}/issues"
+
+[dependency-groups]
+dev = [
+    { include-group = "lint" },
+    { include-group = "release" },
+    { include-group = "type" },
+]
+docs = [
+    "black>=24.10.0",
+    "mkdocs>=1.6.1",
+    "mkdocstrings[python]>=0.27.0",
+    "mkdocs-material>=9.5.47",
+]
+docstrings = [
+    "interrogate>=1.7.0",
+]
+coverage = [
+    "coverage[toml]>=7.6.8",
+]
+tests = [
+    { include-group = "coverage" },
+    "pytest>=8.3.4",
+]
+lint = [
+    "pre-commit-uv>=4.1.4",
+]
+type = [
+    "mypy>=1.13.0",
+]
+pkg = [
+    "check-wheel-contents>=0.6.1",
+    "twine>=6.0.1",
+    "uv>=0.5.6",
+]
+release = [
+    "packaging>=24.2",
+    "towncrier>=24.8.0",
+]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.sdist]
+include = ["src"]
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/{{ cookiecutter.__package_name }}/__version__.py"
+template = """\
+\"\"\"Version.\"\"\"
+
+__version__ = "{version}"
+\"\"\"Version string.\"\"\"
+"""
+
+[tool.mypy]
+python_version = "{{ cookiecutter.python_version }}"
+warn_unreachable = true
+enable_error_code = [
+    "ignore-without-code",
+    "redundant-expr",
+    "truthy-bool",
+]
+strict = true
+pretty = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["COM812", "ISC001"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/**" = [
+    "INP001",
+]
+"scripts/release.py" = [
+    "S603",
+    "S607",
+]
+"tests/**" = [
+    "ARG",
+    "D",
+    "S101",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+    "-ra",
+    "--showlocals",
+    "--strict-config",
+    "--strict-markers",
+]
+filterwarnings = ["error"]
+log_level = "info"
+testpaths = ["tests"]
+xfail_strict = true
+
+[tool.coverage.run]
+source = ["{{ cookiecutter.__package_name }}"]
+parallel = true
+branch = true
+
+[tool.coverage.paths]
+source = [
+    "src",
+    ".tox/**/site-packages",
+]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "@overload",
+]
+
+[tool.towncrier]
+name = "{{ cookiecutter.project_name }}"
+filename = "CHANGELOG.md"
+directory = "changelog.d"
+start_string = "<!-- towncrier release notes start -->\n"
+underlines = ["", "", ""]
+title_format = "## {version} - {project_date}"
+issue_format = "[#{issue}]({{ cookiecutter.__github_repository }}/{issue})"
+
+[[tool.towncrier.type]]
+directory = "security"
+name = "Security"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "removed"
+name = "Removed"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "deprecated"
+name = "Deprecated"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "added"
+name = "Added"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "changed"
+name = "Changed"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "fixed"
+name = "Fixed"
+showcontent = true
+
+[tool.codespell]
+write-changes = true
+ignore-words-list = ["socio-economic"]
+
+[tool.interrogate]
+ignore-init-method = false
+ignore-init-module = false
+ignore-magic = true
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = false
+ignore-nested-functions = false
+ignore-nested-classes = false
+ignore-setters = false
+exclude = ["tests"]
+fail-under = 95
+verbose = 0
+quiet = false
+whitelist-regex = []
+color = true

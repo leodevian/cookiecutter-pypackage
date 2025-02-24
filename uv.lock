@@ -254,6 +254,7 @@ release = [
 tests = [
     { name = "pytest" },
     { name = "pytest-cookies" },
+    { name = "uv" },
 ]
 type = [
     { name = "mypy" },
@@ -282,6 +283,7 @@ release = [
 tests = [
     { name = "pytest", specifier = ">=8.3.4" },
     { name = "pytest-cookies", specifier = ">=0.7.0" },
+    { name = "uv", specifier = ">=0.5.26" },
 ]
 type = [{ name = "mypy", specifier = ">=1.13.0" }]
 

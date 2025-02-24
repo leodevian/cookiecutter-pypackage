@@ -41,7 +41,7 @@ dev = [
 docs = [
     "black>=24.10.0",
     "mkdocs>=1.6.1",
-    "mkdocstrings[python]>=0.27.0",
+    "mkdocstrings[python]>=0.28.2",
     "mkdocs-material>=9.5.47",
 ]
 docstrings = [

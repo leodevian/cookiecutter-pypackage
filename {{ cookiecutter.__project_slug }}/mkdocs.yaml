@@ -12,7 +12,7 @@ nav:
     - Changelog: changelog.md
     - Installation: installation.md
   - API Documentation:
-    - {{ cookiecutter.__package_name }}: api/index.md
+    - api/index.md
 
 validation:
   omitted_files: warn

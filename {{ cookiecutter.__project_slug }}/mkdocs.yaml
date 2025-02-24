@@ -76,7 +76,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          import:
+          inventories:
             - https://docs.python.org/3/objects.inv
           options:
             show_symbol_type_heading: true

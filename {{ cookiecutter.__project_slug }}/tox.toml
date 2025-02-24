@@ -62,7 +62,7 @@ commands = [
 ]
 
 [env.pkg]
-description = "Check the package"
+description = "Check the Python package"
 skip_install = true
 dependency_groups = ["pkg"]
 commands = [

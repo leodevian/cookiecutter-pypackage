@@ -7,7 +7,10 @@ from pathlib import Path
 
 
 def main() -> None:
-    """Run post-generation hook."""
+    """Run the post-generation hook.
+
+    It creates an empty Git repository if one does not already exist.
+    """
     if Path(".git").exists():
         return
 

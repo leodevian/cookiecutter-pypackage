@@ -5,6 +5,7 @@ requires = [
 env_list = [
     "lint",
     "type",
+    "type-tests",
     "{{ cookiecutter.python_version }}",
     "coverage",
     "pkg",
@@ -50,6 +51,14 @@ base_python = ["{{ cookiecutter.python_version }}"]
 dependency_groups = ["type"]
 commands = [
     ["mypy", "src"],
+]
+
+[env.type-tests]
+description = "Type check Python tests"
+base_python = ["{{ cookiecutter.python_version }}"]
+dependency_groups = ["tests", "type"]
+commands = [
+    ["mypy", "tests"],
 ]
 
 [env.pkg]

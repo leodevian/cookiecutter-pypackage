@@ -68,6 +68,7 @@ jobs:
         env:
           - lint
           - type
+          - type-tests
           - docs
 
     steps:

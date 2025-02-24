@@ -5,6 +5,7 @@ requires = [
 env_list = [
     "lint",
     "type",
+    "type-tests",
     "3.13",
     "3.12",
     "3.11",
@@ -39,6 +40,14 @@ base_python = ["3.13"]
 dependency_groups = ["type"]
 commands = [
     ["mypy", "hooks"],
+]
+
+[env.type-tests]
+description = "Type check Python tests"
+base_python = ["3.13"]
+dependency_groups = ["tests", "type"]
+commands = [
+    ["mypy", "tests"],
 ]
 
 [env.docs]

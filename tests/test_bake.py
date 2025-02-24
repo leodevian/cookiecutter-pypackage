@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import subprocess
 from typing import TYPE_CHECKING, Any
 
 import pytest
@@ -55,3 +56,30 @@ def test_bake(
     assert result.exception is None
     assert result.project_path.name == slugify(context["project_name"])
     assert result.project_path.is_dir()
+
+
+def test_tox(
+    cookies: Cookies,
+    context: dict[str, Any],
+) -> None:
+    """Test that the generated Python package passes tox."""
+    result = cookies.bake(extra_context=context)
+
+    try:
+        subprocess.run(  # noqa: S603
+            (
+                "uvx",
+                "--python-preference",
+                "only-managed",
+                "--python",
+                "3.13",
+                "--with",
+                "tox-uv",
+                "tox",
+            ),
+            cwd=result.project_path,
+            check=True,
+        )
+
+    except subprocess.CalledProcessError as e:
+        pytest.fail(str(e))

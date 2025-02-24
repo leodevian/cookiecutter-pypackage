@@ -73,9 +73,6 @@ release = [
 [tool.hatch.version]
 source = "vcs"
 
-[tool.hatch.build.targets.sdist]
-include = ["src"]
-
 [tool.hatch.build.hooks.vcs]
 version-file = "src/{{ cookiecutter.__package_name }}/_version.py"
 

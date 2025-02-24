@@ -79,6 +79,7 @@ plugins:
           inventories:
             - https://docs.python.org/3/objects.inv
           options:
+            parameter_headings: true
             show_symbol_type_heading: true
             show_symbol_type_toc: true
             inherited_members: true

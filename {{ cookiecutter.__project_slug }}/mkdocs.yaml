@@ -2,7 +2,6 @@ site_name: {{ cookiecutter.project_name }}
 site_url: {{ cookiecutter.__github_pages }}
 repo_url: {{ cookiecutter.__github_repository }}
 repo_name: {{ cookiecutter.__github_slug }}
-edit_uri: edit/main/docs/
 site_description: "{{ cookiecutter.short_description }}"
 site_author: {{ cookiecutter.author_name }}
 copyright: Copyright &copy; {% now 'utc', '%Y' %} {{ cookiecutter.author_name }}

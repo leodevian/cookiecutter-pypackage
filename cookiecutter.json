@@ -1,0 +1,49 @@
+{
+  "project_name": "My Python Package",
+  "__project_slug": "{{ cookiecutter.project_name|slugify }}",
+  "__package_name": "{{ cookiecutter.project_name|slugify(separator='_') }}",
+  "short_description": "",
+  "python_version": [
+    "3.13",
+    "3.12",
+    "3.11",
+    "3.10",
+    "3.9"
+  ],
+  "license": [
+    "MIT",
+    "BSD-3-Clause",
+    "GPL-3.0-only",
+    "Apache-2.0",
+    "LicenseRef-Proprietary"
+  ],
+  "author_name": "Léo Bernard",
+  "author_email": "leodevian.gh@gmail.com",
+  "github_owner": "leodevian",
+  "__github_slug": "{{ cookiecutter.github_owner }}/{{ cookiecutter.__project_slug }}",
+  "__github_repository": "https://github.com/{{ cookiecutter.__github_slug }}",
+  "__github_pages": "https://{{ cookiecutter.github_owner }}.github.io/{{ cookiecutter.__project_slug }}",
+  "__prompts__": {
+    "project_name": "Project name",
+    "short_description": "Description",
+    "python_version": {
+    "__prompt__": "Python version",
+      "3.13": "Python 3.13",
+      "3.12": "Python 3.12",
+      "3.11": "Python 3.11",
+      "3.10": "Python 3.10",
+      "3.9": "Python 3.9"
+    },
+    "license": {
+      "__prompt__": "License",
+      "MIT": "MIT",
+      "BSD-3-Clause": "BSD-3-Clause",
+      "GPL-3.0-only": "GNU General Public License v3.0 only",
+      "Apache-2.0": "Apache License 2.0",
+      "LicenseRef-Proprietary": "Proprietary"
+    },
+    "author_name": "Author name",
+    "author_email": "Author email",
+    "github_owner": "GitHub owner"
+  }
+}

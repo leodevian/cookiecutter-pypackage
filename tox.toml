@@ -1,0 +1,108 @@
+requires = [
+  "tox>=4.23.2",
+  "tox-uv>=1.25",
+]
+env_list = [
+  "lint",
+  "type",
+  "type-tests",
+  "docstrings",
+  "3.13",
+  "3.12",
+  "3.11",
+  "3.10",
+  "3.9",
+]
+labels.tests = [
+  "3.13",
+  "3.12",
+  "3.11",
+  "3.10",
+  "3.9",
+]
+
+[env_run_base]
+description = "Run tests under {env_name}"
+package = "skip"
+dependency_groups = [ "tests" ]
+commands = [
+  [ "pytest", { replace = "posargs", extend = true } ],
+]
+
+[env.lint]
+description = "Run all pre-commit hooks"
+pass_env = [
+  "DISABLE_PRE_COMMIT_UV_PATCH",
+]
+set_env = [
+  { FORCE_PRE_COMMIT_UV_PATCH = "1" },
+]
+dependency_groups = [ "lint" ]
+commands = [
+  [
+    "pre-commit",
+    "run",
+    "--all-files",
+    "--show-diff-on-failure",
+    { replace = "posargs", extend = true },
+  ],
+]
+
+[env.type]
+description = "Type check Cookiecutter hooks"
+base_python = [ "3.13" ]
+dependency_groups = [ "type" ]
+commands = [
+  [ "mypy", "hooks" ],
+]
+
+[env.type-tests]
+description = "Type check Python tests"
+base_python = [ "3.13" ]
+dependency_groups = [
+  "tests",
+  "type",
+]
+commands = [
+  [ "mypy", "tests" ],
+]
+
+[env.docstrings]
+description = "Check docstring coverage"
+skip_install = true
+dependency_groups = [ "docstrings" ]
+commands = [
+  [
+    "interrogate",
+    "--verbose",
+    { replace = "posargs", extend = true },
+  ],
+]
+
+[env.docs]
+description = "Generate documentation"
+base_python = [ "3.13" ]
+dependency_groups = [ "docs" ]
+commands = [
+  [
+    "mkdocs",
+    "build",
+    "--clean",
+    "--strict",
+    { replace = "posargs", extend = true },
+  ],
+]
+
+[env.autodocs]
+description = "Serve documentation locally"
+base_python = [ "3.13" ]
+dependency_groups = [ "docs" ]
+commands = [
+  [
+    "mkdocs",
+    "serve",
+    "--strict",
+    "--open",
+    { replace = "posargs", extend = true },
+  ],
+]

@@ -1,7 +1,9 @@
 # {{ cookiecutter.project_name }}
 
 - GitHub repository: <{{ cookiecutter.__github_repository }}>
+{%- if cookiecutter.docs %}
 - Documentation: <{{ cookiecutter.__github_pages }}>
+{%- endif %}
 - License: {{ cookiecutter.license }}
 
 ## Installation

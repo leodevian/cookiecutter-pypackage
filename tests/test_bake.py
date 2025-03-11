@@ -55,3 +55,25 @@ def test_bake(
     assert result.exception is None
     assert result.project_path.name == slugify(context["project_name"])
     assert result.project_path.is_dir()
+
+
+@pytest.mark.parametrize(
+    "docs",
+    [
+        False,
+        True,
+    ],
+)
+def test_docs(
+    cookies: Cookies,
+    context: dict[str, Any],
+    docs: bool,
+) -> None:
+    """Test the option to use MkDocs and GitHub Pages."""
+    result = cookies.bake(extra_context={**context, "docs": docs})
+
+    assert result.exit_code == 0
+    assert result.exception is None
+    assert result.project_path.is_dir()
+    assert (result.project_path / "docs").is_dir() is docs
+    assert (result.project_path / "mkdocs.yaml").exists() is docs

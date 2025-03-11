@@ -49,6 +49,7 @@ repos:
 
   - repo: https://github.com/hukkin/mdformat
     rev: 0.7.22
+{%- if cookiecutter.docs %}
     hooks:
       - id: mdformat
         exclude: ^docs/
@@ -66,3 +67,11 @@ repos:
           - mdformat-mkdocs
           - mdformat-simple-breaks
           - mdformat-tables
+{% else %}
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - black==25.1.0
+          - mdformat-black
+          - mdformat-gfm
+{% endif %}

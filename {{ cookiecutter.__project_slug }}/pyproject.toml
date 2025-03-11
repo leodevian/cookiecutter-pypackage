@@ -32,8 +32,12 @@ dynamic = [
   "version",
 ]
 dependencies = [  ]
+{%- if cookiecutter.docs %}
 urls.changelog = "{{ cookiecutter.__github_pages }}/changelog"
 urls.documentation = "{{ cookiecutter.__github_pages }}"
+{%- else %}
+urls.changelog = "{{ cookiecutter.__github_repository }}/blob/main/CHANGELOG.md"
+{%- endif %}
 urls.homepage = "{{ cookiecutter.__github_repository }}"
 urls.issues = "{{ cookiecutter.__github_repository }}/issues"
 urls.repository = "{{ cookiecutter.__github_repository }}"
@@ -47,12 +51,14 @@ dev = [
 type = [
   "mypy>=1.15",
 ]
+{%- if cookiecutter.docs %}
 docs = [
   "black>=24.10",
   "mkdocs>=1.6.1",
   "mkdocs-material>=9.5.47",
   "mkdocstrings[python]>=0.28.2",
 ]
+{%- endif %}
 lint = [
   "pre-commit-uv>=4.1.4",
 ]

@@ -23,6 +23,7 @@
   "__github_slug": "{{ cookiecutter.github_owner }}/{{ cookiecutter.__project_slug }}",
   "__github_repository": "https://github.com/{{ cookiecutter.__github_slug }}",
   "__github_pages": "https://{{ cookiecutter.github_owner }}.github.io/{{ cookiecutter.__project_slug }}",
+  "docs": true,
   "__prompts__": {
     "project_name": "Project name",
     "short_description": "Description",
@@ -44,6 +45,7 @@
     },
     "author_name": "Author name",
     "author_email": "Author email",
-    "github_owner": "GitHub owner"
+    "github_owner": "GitHub owner",
+    "docs": "Use MkDocs and GitHub Pages"
   }
 }

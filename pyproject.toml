@@ -94,10 +94,12 @@ lint.per-file-ignores."[{][{] cookiecutter.__project_slug [}][}]/scripts/release
 lint.per-file-ignores."[{][{] cookiecutter.__project_slug [}][}]/tests/**" = [
   "S101", # using assert is okay in tests
 ]
-lint.per-file-ignores."hooks/post_gen_project.py" = [
-  "S603", # using subprocess is okay
+lint.per-file-ignores."hooks/**" = [
+  "PLR0133", # comparison between constants is okay in Cookiecutter hooks
+  "S603",    # using subprocess is okay
 ]
 lint.per-file-ignores."tests/**" = [
+  "FBT",  # boolean-typed positional arguments are okay in tests
   "S101", # using assert is okay in tests
 ]
 lint.pydocstyle.convention = "google"
@@ -212,6 +214,12 @@ enable_error_code = [
 ]
 strict = true
 pretty = true
+
+[[tool.mypy.overrides]]
+module = "hooks.*"
+disable_error_code = [
+  "comparison-overlap", # comparison between constants is okay in Cookiecutter hooks
+]
 
 [tool.interrogate]
 ignore-init-method = false

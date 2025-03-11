@@ -108,7 +108,7 @@ commands = [
     "{env_tmp_dir}{/}*",
   ],
 ]
-
+{% if cookiecutter.docs %}
 [env.docs]
 description = "Generate documentation"
 base_python = [ "{{ cookiecutter.python_version }}" ]
@@ -137,7 +137,7 @@ commands = [
     { replace = "posargs", extend = true },
   ],
 ]
-
+{% endif %}
 [env.release]
 description = "Prepare a new release"
 skip_install = true

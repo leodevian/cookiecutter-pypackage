@@ -29,10 +29,10 @@ build/
 dist/
 *.egg-info/
 src/{{ cookiecutter.__package_name }}/VERSION.txt
-
+{% if cookiecutter.docs %}
 # Documentation
 site/
-
+{% endif %}
 # Miscellaneous
 *~
 .*~

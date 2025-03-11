@@ -13,6 +13,7 @@ repos:
       - id: check-json
       - id: check-merge-conflict
       - id: check-toml
+        exclude: ^\{\{\s*cookiecutter\.__project_slug\s*\}\}/
       - id: check-yaml
         exclude: ^\{\{\s*cookiecutter\.__project_slug\s*\}\}/
       - id: end-of-file-fixer
@@ -29,6 +30,7 @@ repos:
     rev: v1.0.0
     hooks:
       - id: tox-toml-fmt
+        exclude: ^\{\{\s*cookiecutter\.__project_slug\s*\}\}/
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.9.10

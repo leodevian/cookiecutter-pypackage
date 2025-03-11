@@ -102,7 +102,7 @@ jobs:
           --skip-pkg-install
           -e {% raw %}${{ matrix.python_version }}{% endraw %}
 
-      - name: Upload coverage data
+      - name: Store coverage data
         uses: actions/upload-artifact@v4
         with:
           name: coverage-data-{% raw %}${{ matrix.python_version }}{% endraw %}

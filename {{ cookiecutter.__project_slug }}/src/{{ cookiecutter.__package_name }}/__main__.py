@@ -13,8 +13,22 @@ if TYPE_CHECKING:
     from collections.abc import Sequence
 
 
-class _Args(argparse.Namespace):
+class Args(argparse.Namespace):
     """Parsed arguments."""
+
+
+def parse_args(argv: Sequence[str] | None = None) -> Args:
+    """Parse command-line arguments.
+
+    Args:
+        argv: List of command-line arguments.
+
+    Returns:
+        Parsed arguments.
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--version", action="version", version=__version__)
+    return parser.parse_args(argv, Args())
 
 
 def main(argv: Sequence[str] | None = None) -> None:
@@ -23,10 +37,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     Args:
         argv: List of command-line arguments.
     """
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--version", action="version", version=__version__)
-    args = parser.parse_args(argv, _Args())
-    print(args)  # noqa: T201
+    parse_args(argv)
 
 
 if __name__ == "__main__":

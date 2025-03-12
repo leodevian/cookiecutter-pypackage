@@ -15,4 +15,4 @@ Invoke `{{ cookiecutter.__project_slug }}` using [uvx](https://docs.astral.sh/uv
 ```console
 $ uvx {{ cookiecutter.__project_slug }}
 ```
-{% endif %}
+{% endif -%}

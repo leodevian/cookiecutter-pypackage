@@ -51,7 +51,6 @@ site_dir: site
 
 watch:
   - mkdocs.yaml
-  - README.md
   - CHANGELOG.md
 
 markdown_extensions:

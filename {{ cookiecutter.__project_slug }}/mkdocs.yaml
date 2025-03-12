@@ -63,7 +63,6 @@ site_dir: site
 
 watch:
   - mkdocs.yaml
-  - README.md
   - CHANGELOG.md
   - src/{{ cookiecutter.__package_name }}
 

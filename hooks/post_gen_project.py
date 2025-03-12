@@ -25,7 +25,8 @@ def remove_read_only(func: Callable[..., Any], path: str, _: Any) -> None:  # no
 
 def remove_docs() -> None:
     """Remove the package documentation directory and the MkDocs configuration file."""
-    Path("mkdocs.yaml").unlink(missing_ok=True)
+    mkdocs_path = Path("mkdocs.yaml")
+    mkdocs_path.unlink(missing_ok=True)
 
     docs_path = Path("docs")
     if sys.version_info < (3, 12):

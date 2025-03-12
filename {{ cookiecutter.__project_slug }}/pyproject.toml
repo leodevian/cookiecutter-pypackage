@@ -10,7 +10,9 @@ name = "{{ cookiecutter.__project_slug }}"
 description = "{{ cookiecutter.short_description }}"
 readme = "README.md"
 license = "{{ cookiecutter.license }}"
-license-files = [ "LICENSE" ]
+license-files = [
+  "LICENSE",
+]
 maintainers = [
   { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
 ]

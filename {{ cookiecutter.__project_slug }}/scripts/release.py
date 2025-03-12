@@ -20,10 +20,10 @@ if TYPE_CHECKING:
 
 
 class Args(argparse.Namespace):
-    """Arguments."""
+    """Parsed arguments."""
 
     version: Version
-    """Version."""
+    """Target version."""
 
     dry_run: bool
     """Perform dry run."""
@@ -33,7 +33,7 @@ def parse_args(argv: Sequence[str] | None = None) -> Args:
     """Parse arguments.
 
     Args:
-        argv: Arguments array.
+        argv: List of command-line arguments.
 
     Returns:
         Parsed arguments.
@@ -43,7 +43,7 @@ def parse_args(argv: Sequence[str] | None = None) -> Args:
         "--version",
         type=Version,
         required=True,
-        help="Version.",
+        help="Target version.",
     )
     parser.add_argument(
         "--dry-run",
@@ -57,7 +57,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     """Prepare a new release.
 
     Args:
-        argv: Arguments array.
+        argv: List of command-line arguments.
     """
     args = parse_args(argv)
 

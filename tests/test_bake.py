@@ -56,6 +56,9 @@ def test_bake(
     assert result.project_path.name == slugify(context["project_name"])
     assert result.project_path.is_dir()
 
+    package_name = slugify(context["project_name"], separator="_")
+    assert (result.project_path / "src" / package_name).is_dir()
+
 
 @pytest.mark.parametrize(
     "docs",

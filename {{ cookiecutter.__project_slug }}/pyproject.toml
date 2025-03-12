@@ -41,7 +41,9 @@ urls.changelog = "{{ cookiecutter.__github_repository }}/blob/main/CHANGELOG.md"
 urls.homepage = "{{ cookiecutter.__github_repository }}"
 urls.issues = "{{ cookiecutter.__github_repository }}/issues"
 urls.repository = "{{ cookiecutter.__github_repository }}"
-
+{% if cookiecutter.cli -%}
+scripts.{{ cookiecutter.__project_slug }} = "{{ cookiecutter.__package_name }}.__main__:main"
+{% endif %}
 [dependency-groups]
 dev = [
   { include-group = "lint" },

@@ -77,6 +77,7 @@ release = [
 [tool.ruff]
 extend-exclude = [
   "[{][{] cookiecutter.__project_slug [}][}]/pyproject.toml",
+  "[{][{] cookiecutter.__project_slug [}][}]/src/[{][{] cookiecutter.__package_name [}][}]/__main__.py",
 ]
 lint.select = [
   "ALL",
@@ -232,7 +233,9 @@ ignore-module = false
 ignore-nested-functions = false
 ignore-nested-classes = false
 ignore-setters = false
-exclude = [  ]
+exclude = [
+  "{{ cookiecutter.__project_slug }}/src/{{ cookiecutter.__package_name }}/__main__.py",
+]
 fail-under = 100
 verbose = 0
 quiet = false

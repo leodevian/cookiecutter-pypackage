@@ -14,6 +14,15 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
 
+def remove_cli() -> None:
+    """Remove `__main__.py` and its page in the documentation."""
+    module_path = Path("src") / "{{ cookiecutter.__package_name }}" / "__main__.py"
+    module_path.unlink(missing_ok=True)
+
+    page_path = Path("docs") / "api" / "{{ cookiecutter.__package_name }}.__main__.md"
+    page_path.unlink(missing_ok=True)
+
+
 def remove_read_only(func: Callable[..., Any], path: str, _: Any) -> None:  # noqa: ANN401
     """Clear the read-only bit and reattempt the removal.
 
@@ -52,6 +61,9 @@ def main() -> None:
 
     if "{{ cookiecutter.docs }}" != "True":
         remove_docs()
+
+    if "{{ cookiecutter.cli }}" != "True":
+        remove_cli()
 
 
 if __name__ == "__main__":

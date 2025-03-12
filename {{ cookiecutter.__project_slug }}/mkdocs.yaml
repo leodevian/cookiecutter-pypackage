@@ -15,6 +15,9 @@ nav:
   - API Reference:
     - api/index.md
     - api/{{ cookiecutter.__package_name }}.md
+{%- if cookiecutter.cli %}
+    - api/{{ cookiecutter.__package_name }}.__main__.md
+{%- endif %}
 
 validation:
   omitted_files: warn

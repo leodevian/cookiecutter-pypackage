@@ -80,3 +80,29 @@ def test_docs(
     assert result.project_path.is_dir()
     assert (result.project_path / "docs").is_dir() is docs
     assert (result.project_path / "mkdocs.yaml").exists() is docs
+
+
+@pytest.mark.parametrize(
+    "cli",
+    [
+        False,
+        True,
+    ],
+)
+def test_cli(
+    cookies: Cookies,
+    context: dict[str, Any],
+    cli: bool,
+) -> None:
+    """Test the option to add a command-line interface."""
+    result = cookies.bake(extra_context={**context, "cli": cli, "docs": True})
+
+    assert result.exit_code == 0
+    assert result.exception is None
+    assert result.project_path.is_dir()
+
+    package_name = slugify(context["project_name"], separator="_")
+    assert (result.project_path / "src" / package_name / "__main__.py").exists() is cli
+    assert (
+        result.project_path / "docs" / "api" / f"{package_name}.__main__.md"
+    ).exists() is cli

@@ -11,6 +11,13 @@ env_list = [
   "{{ cookiecutter.python_version }}",
   "coverage",
 ]
+labels.checks = [
+  "lint",
+  "type",
+  "type-tests",
+  "docstrings",
+  "pkg",
+]
 labels.tests = [
   "{{ cookiecutter.python_version }}",
   "coverage",

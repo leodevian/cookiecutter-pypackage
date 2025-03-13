@@ -48,6 +48,6 @@
     "author_email": "Author email",
     "github_owner": "GitHub owner",
     "docs": "Use MkDocs and GitHub Pages",
-    "cli": "Add command-line interface"
+    "cli": "Add a command-line interface"
   }
 }

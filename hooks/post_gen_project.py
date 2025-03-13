@@ -14,13 +14,11 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
 
-def remove_cli() -> None:
-    """Remove `__main__.py` and its page in the documentation."""
-    module_path = Path("src") / "{{ cookiecutter.__package_name }}" / "__main__.py"
-    module_path.unlink(missing_ok=True)
-
-    page_path = Path("docs") / "api" / "{{ cookiecutter.__package_name }}.__main__.md"
-    page_path.unlink(missing_ok=True)
+def remove_module(module_name: str) -> None:
+    """Remove a module from the Python package and remove its API reference page."""
+    package_name = "{{ cookiecutter.__package_name }}"  # rendered
+    Path("src", package_name, f"{module_name}.py").unlink(missing_ok=True)
+    Path("docs", "api", f"{package_name}.{module_name}.md").unlink(missing_ok=True)
 
 
 def remove_read_only(func: Callable[..., Any], path: str, _: Any) -> None:  # noqa: ANN401
@@ -63,7 +61,7 @@ def main() -> None:
         remove_docs()
 
     if "{{ cookiecutter.cli }}" != "True":
-        remove_cli()
+        remove_module("__main__")
 
 
 if __name__ == "__main__":

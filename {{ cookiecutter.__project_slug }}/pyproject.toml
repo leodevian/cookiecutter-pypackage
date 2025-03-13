@@ -48,6 +48,7 @@ scripts.{{ cookiecutter.__project_slug }} = "{{ cookiecutter.__package_name }}._
 {% endif %}
 [dependency-groups]
 dev = [
+  { include-group = "coverage" },
   { include-group = "lint" },
   { include-group = "release" },
   { include-group = "type" },

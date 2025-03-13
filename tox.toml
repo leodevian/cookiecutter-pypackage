@@ -30,6 +30,9 @@ labels.tests = [
 [env_run_base]
 description = "Run tests under {env_name}"
 package = "skip"
+pass_env = [
+  "PYTEST_*",
+]
 dependency_groups = [ "tests" ]
 commands = [
   [ "pytest", { replace = "posargs", extend = true } ],

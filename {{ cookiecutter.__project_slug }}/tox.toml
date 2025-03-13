@@ -27,6 +27,9 @@ labels.tests = [
 description = "Run tests under {env_name}"
 package = "wheel"
 wheel_build_env = ".pkg"
+pass_env = [
+  "PYTEST_*",
+]
 set_env = [
   { COVERAGE_PROCESS_START = "{tox_root}/pyproject.toml" },
 ]

@@ -15,17 +15,6 @@ if TYPE_CHECKING:
     from pytest_cookies.plugin import Cookies  # type: ignore[import-untyped]
 
 
-@pytest.fixture
-def context() -> dict[str, Any]:
-    """Generate context."""
-    return {
-        "project_name": "My Python Package",
-        "author_name": "Léo Bernard",
-        "author_email": "leodevian.gh@gmail.com",
-        "github_owner": "leodevian",
-    }
-
-
 @pytest.mark.parametrize(
     "context_override",
     [

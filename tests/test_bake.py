@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+__all__ = ()
+
 from typing import TYPE_CHECKING, Any
 
 import pytest

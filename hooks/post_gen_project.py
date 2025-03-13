@@ -38,6 +38,14 @@ def force_remove_directory(dir_path: Path) -> None:
         shutil.rmtree(dir_path, onexc=remove_read_only)
 
 
+def remove_documentation() -> None:
+    """Remove MkDocs documentation."""
+    mkdocs_path = Path("mkdocs.yaml")
+    mkdocs_path.unlink(missing_ok=True)
+    docs_path = Path("docs")
+    force_remove_directory(docs_path)
+
+
 def create_empty_git_repository() -> None:
     """Create an empty Git repository.
 
@@ -54,8 +62,7 @@ def main() -> None:
     create_empty_git_repository()
 
     if "{{ cookiecutter.docs }}" != "True":
-        Path("mkdocs.yaml").unlink(missing_ok=True)
-        force_remove_directory(Path("docs"))
+        remove_documentation()
 
     if "{{ cookiecutter.cli }}" != "True":
         remove_module("__main__")

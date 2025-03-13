@@ -17,7 +17,7 @@ class Args(argparse.Namespace):
     """Parsed arguments."""
 
 
-def parse_args(argv: Sequence[str] | None = None) -> Args:
+def _parse_args(argv: Sequence[str] | None = None) -> Args:
     """Parse command-line arguments.
 
     Args:
@@ -37,7 +37,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     Args:
         argv: List of command-line arguments.
     """
-    parse_args(argv)
+    _parse_args(argv)
 
 
 if __name__ == "__main__":

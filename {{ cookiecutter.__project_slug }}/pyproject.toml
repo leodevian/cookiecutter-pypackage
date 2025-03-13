@@ -116,7 +116,7 @@ write-changes = true
 ignore-words-list = [ "socio-economic" ]
 
 [tool.pyproject-fmt]
-max_supported_version = "{{ cookiecutter.python_version }}"
+max_supported_python = "{{ cookiecutter.python_version }}"
 
 [tool.pytest.ini_options]
 minversion = "6.0"

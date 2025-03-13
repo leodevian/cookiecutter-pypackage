@@ -66,6 +66,7 @@ def main() -> None:
 
     if "{{ cookiecutter.cli }}" != "True":
         remove_module("__main__")
+        remove_module("log")
 
 
 if __name__ == "__main__":

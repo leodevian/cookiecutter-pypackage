@@ -66,11 +66,15 @@ def test_options(
 
     cli_page_path = docs_path / "api" / f"{package_name}.__main__.md"
     assert cli_page_path.exists() is (options["docs"] and options["cli"])
+    log_page_path = docs_path / "api" / f"{package_name}.log.md"
+    assert log_page_path.exists() is (options["docs"] and options["cli"])
 
     package_path = result.project_path / "src" / package_name
 
     cli_path = package_path / "__main__.py"
     assert cli_path.exists() is options["cli"]
+    log_path = package_path / "log.py"
+    assert log_path.exists() is options["cli"]
 
 
 @pytest.mark.integration

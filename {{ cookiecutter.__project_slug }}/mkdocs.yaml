@@ -17,6 +17,7 @@ nav:
     - api/{{ cookiecutter.__package_name }}.md
 {%- if cookiecutter.cli %}
     - api/{{ cookiecutter.__package_name }}.__main__.md
+    - api/{{ cookiecutter.__package_name }}.log.md
 {%- endif %}
 
 validation:

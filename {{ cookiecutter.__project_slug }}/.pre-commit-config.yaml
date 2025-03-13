@@ -67,11 +67,11 @@ repos:
           - mdformat-mkdocs
           - mdformat-simple-breaks
           - mdformat-tables
-{% else %}
+{%- else %}
     hooks:
       - id: mdformat
         additional_dependencies:
           - black==25.1.0
           - mdformat-black
           - mdformat-gfm
-{% endif %}
+{%- endif %}

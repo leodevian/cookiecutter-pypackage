@@ -5,6 +5,7 @@ from __future__ import annotations
 __all__ = ()
 
 import itertools
+import subprocess
 from typing import TYPE_CHECKING, Any
 
 import pytest
@@ -67,3 +68,39 @@ def test_options(
 
     cli_path = package_path / "__main__.py"
     assert cli_path.exists() is options["cli"]
+
+
+@pytest.mark.integration
+@pytest.mark.parametrize("options", SUPPORTED_OPTIONS, ids=context_id)
+def test_passes_checks(
+    cookies: Cookies,
+    context: dict[str, Any],
+    options: Options,
+) -> None:
+    """Test that the generated Python package passes checks."""
+    result = cookies.bake({**context, **options})
+
+    assert result.exit_code == 0
+    assert result.exception is None
+    assert result.project_path.is_dir()
+
+    try:
+        subprocess.run(
+            (
+                "uvx",
+                "--python-preference",
+                "only-managed",
+                "--python",
+                "3.13",
+                "--with",
+                "tox-uv",
+                "tox",
+                "run",
+                "-m",
+                "checks",
+            ),
+            check=True,
+        )
+
+    except subprocess.CalledProcessError:
+        pytest.fail("an error occurred", pytrace=True)

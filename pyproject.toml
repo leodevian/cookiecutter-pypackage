@@ -102,6 +102,7 @@ lint.per-file-ignores."hooks/**" = [
 lint.per-file-ignores."tests/**" = [
   "FBT",  # boolean-typed positional arguments are okay in tests
   "S101", # using assert is okay in tests
+  "S603", # using subprocess is okay
 ]
 lint.pydocstyle.convention = "google"
 
@@ -126,6 +127,9 @@ filterwarnings = [ "error" ]
 log_level = "info"
 testpaths = [ "tests" ]
 xfail_strict = true
+markers = [
+  "integration: integration tests",
+]
 
 [tool.bumpversion]
 current_version = "2025.3.10"

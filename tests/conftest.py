@@ -7,6 +7,7 @@ __all__ = ()
 from typing import Any
 
 import pytest
+from slugify import slugify
 
 
 @pytest.fixture
@@ -20,3 +21,15 @@ def context() -> dict[str, Any]:
         "docs": False,
         "cli": False,
     }
+
+
+@pytest.fixture
+def project_slug(context: dict[str, Any]) -> str:
+    """Return the project slug."""
+    return slugify(context["project_name"])
+
+
+@pytest.fixture
+def package_name(project_slug: str) -> str:
+    """Return the package name."""
+    return project_slug.replace("-", "_")

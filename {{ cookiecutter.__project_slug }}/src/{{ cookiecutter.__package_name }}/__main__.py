@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from collections.abc import Sequence
 
 
-class Args(argparse.Namespace):
+class _Args(argparse.Namespace):
     """Parsed arguments."""
 
 
@@ -28,7 +28,7 @@ def _parse_args(argv: Sequence[str] | None = None) -> Args:
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("--version", action="version", version=__version__)
-    return parser.parse_args(argv, Args())
+    return parser.parse_args(argv, _Args())
 
 
 def main(argv: Sequence[str] | None = None) -> None:

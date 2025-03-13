@@ -30,16 +30,12 @@ def remove_read_only(func: Callable[..., Any], path: str, _: Any) -> None:  # no
     func(path)
 
 
-def remove_docs() -> None:
-    """Remove the package documentation directory and the MkDocs configuration file."""
-    mkdocs_path = Path("mkdocs.yaml")
-    mkdocs_path.unlink(missing_ok=True)
-
-    docs_path = Path("docs")
+def force_remove_directory(dir_path: Path) -> None:
+    """Force remove a directory."""
     if sys.version_info < (3, 12):
-        shutil.rmtree(docs_path, onerror=remove_read_only)
+        shutil.rmtree(dir_path, onerror=remove_read_only)
     else:
-        shutil.rmtree(docs_path, onexc=remove_read_only)
+        shutil.rmtree(dir_path, onexc=remove_read_only)
 
 
 def create_empty_git_repository() -> None:
@@ -58,7 +54,8 @@ def main() -> None:
     create_empty_git_repository()
 
     if "{{ cookiecutter.docs }}" != "True":
-        remove_docs()
+        Path("mkdocs.yaml").unlink(missing_ok=True)
+        force_remove_directory(Path("docs"))
 
     if "{{ cookiecutter.cli }}" != "True":
         remove_module("__main__")

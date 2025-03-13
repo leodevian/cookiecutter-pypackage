@@ -9,6 +9,8 @@ from typing import TYPE_CHECKING, Any
 import pytest
 from slugify import slugify
 
+from tests.utils import context_id
+
 if TYPE_CHECKING:
     from pytest_cookies.plugin import Cookies  # type: ignore[import-untyped]
 
@@ -22,11 +24,6 @@ def context() -> dict[str, Any]:
         "author_email": "leodevian.gh@gmail.com",
         "github_owner": "leodevian",
     }
-
-
-def context_id(context: dict[str, Any]) -> str:
-    """Create test ID from context."""
-    return "-".join(f"{key}:{value}" for key, value in context.items())
 
 
 @pytest.mark.parametrize(

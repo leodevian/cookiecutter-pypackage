@@ -17,4 +17,6 @@ def context() -> dict[str, Any]:
         "author_name": "Léo Bernard",
         "author_email": "leodevian.gh@gmail.com",
         "github_owner": "leodevian",
+        "docs": False,
+        "cli": False,
     }

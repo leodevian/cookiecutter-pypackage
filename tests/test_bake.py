@@ -40,6 +40,9 @@ def test_bake(
     package_path = result.project_path / "src" / package_name
     assert package_path.is_dir()
 
+    git_path = result.project_path / ".git"
+    assert git_path.is_dir()
+
 
 @pytest.mark.parametrize("options", SUPPORTED_OPTIONS, ids=context_id)
 def test_options(

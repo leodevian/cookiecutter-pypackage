@@ -17,7 +17,7 @@ class _Args(argparse.Namespace):
     """Parsed arguments."""
 
 
-def _parse_args(argv: Sequence[str] | None = None) -> Args:
+def _parse_args(argv: Sequence[str] | None = None) -> _Args:
     """Parse command-line arguments.
 
     Args:

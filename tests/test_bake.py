@@ -102,6 +102,7 @@ def test_passes_checks(
                 "-m",
                 "checks",
             ),
+            cwd=result.project_path,
             check=True,
         )
 

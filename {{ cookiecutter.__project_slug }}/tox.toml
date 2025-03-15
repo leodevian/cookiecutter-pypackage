@@ -38,7 +38,7 @@ commands_pre = [
   [
     "python",
     "-c",
-    "'import pathlib; pathlib.Path(\"{env_site_packages_dir}/cov.pth\").write_text(\"import coverage; coverage.process_startup()\")'",
+    "import pathlib; pathlib.Path(r'{env_site_packages_dir}{/}cov.pth').write_text('import coverage; coverage.process_startup()')",
   ],
 ]
 commands = [
